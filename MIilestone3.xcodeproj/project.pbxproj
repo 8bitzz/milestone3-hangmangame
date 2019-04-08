@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		8CFA6E81225B5301005066A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA6E80225B5301005066A3 /* AppDelegate.swift */; };
-		8CFA6E83225B5301005066A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA6E82225B5301005066A3 /* ViewController.swift */; };
+		8CFA6E83225B5301005066A3 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA6E82225B5301005066A3 /* TopicViewController.swift */; };
 		8CFA6E86225B5301005066A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA6E84225B5301005066A3 /* Main.storyboard */; };
 		8CFA6E88225B5302005066A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA6E87225B5302005066A3 /* Assets.xcassets */; };
 		8CFA6E8B225B5302005066A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA6E89225B5302005066A3 /* LaunchScreen.storyboard */; };
+		8CFA6E93225B580A005066A3 /* VocabTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA6E92225B580A005066A3 /* VocabTableViewController.swift */; };
+		8CFA6E95225B5931005066A3 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA6E94225B5931005066A3 /* Topic.swift */; };
+		8CFA6E97225B59D8005066A3 /* Vocab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA6E96225B59D8005066A3 /* Vocab.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8CFA6E7D225B5301005066A3 /* MIilestone3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIilestone3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CFA6E80225B5301005066A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8CFA6E82225B5301005066A3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8CFA6E82225B5301005066A3 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		8CFA6E85225B5301005066A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8CFA6E87225B5302005066A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CFA6E8A225B5302005066A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CFA6E8C225B5302005066A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CFA6E92225B580A005066A3 /* VocabTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabTableViewController.swift; sourceTree = "<group>"; };
+		8CFA6E94225B5931005066A3 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		8CFA6E96225B59D8005066A3 /* Vocab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocab.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +61,14 @@
 			isa = PBXGroup;
 			children = (
 				8CFA6E80225B5301005066A3 /* AppDelegate.swift */,
-				8CFA6E82225B5301005066A3 /* ViewController.swift */,
+				8CFA6E82225B5301005066A3 /* TopicViewController.swift */,
+				8CFA6E92225B580A005066A3 /* VocabTableViewController.swift */,
 				8CFA6E84225B5301005066A3 /* Main.storyboard */,
 				8CFA6E87225B5302005066A3 /* Assets.xcassets */,
 				8CFA6E89225B5302005066A3 /* LaunchScreen.storyboard */,
 				8CFA6E8C225B5302005066A3 /* Info.plist */,
+				8CFA6E94225B5931005066A3 /* Topic.swift */,
+				8CFA6E96225B59D8005066A3 /* Vocab.swift */,
 			);
 			path = MIilestone3;
 			sourceTree = "<group>";
@@ -135,7 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CFA6E83225B5301005066A3 /* ViewController.swift in Sources */,
+				8CFA6E83225B5301005066A3 /* TopicViewController.swift in Sources */,
+				8CFA6E97225B59D8005066A3 /* Vocab.swift in Sources */,
+				8CFA6E95225B5931005066A3 /* Topic.swift in Sources */,
+				8CFA6E93225B580A005066A3 /* VocabTableViewController.swift in Sources */,
 				8CFA6E81225B5301005066A3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
