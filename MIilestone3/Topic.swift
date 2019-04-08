@@ -9,7 +9,8 @@
 import UIKit
 
 class Topic {
-    let name: String
+    var name: String
+    var collectedWords = VocabList()
     
     init(name: String) {
         self.name =  name

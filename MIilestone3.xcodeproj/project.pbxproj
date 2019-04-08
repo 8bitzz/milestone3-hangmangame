@@ -71,10 +71,10 @@
 				8CFA6E87225B5302005066A3 /* Assets.xcassets */,
 				8CFA6E89225B5302005066A3 /* LaunchScreen.storyboard */,
 				8CFA6E8C225B5302005066A3 /* Info.plist */,
-				8CFA6E94225B5931005066A3 /* Topic.swift */,
 				8CFA6E96225B59D8005066A3 /* Vocab.swift */,
-				8CFA6E98225B60FE005066A3 /* TopicList.swift */,
 				8CFA6E9A225B6230005066A3 /* VocabList.swift */,
+				8CFA6E94225B5931005066A3 /* Topic.swift */,
+				8CFA6E98225B60FE005066A3 /* TopicList.swift */,
 			);
 			path = MIilestone3;
 			sourceTree = "<group>";

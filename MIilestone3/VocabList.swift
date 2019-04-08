@@ -9,7 +9,7 @@
 import UIKit
 
 class VocabList {
-    private(set) var vocabList = [Vocab]()
+    var vocabList: [Vocab] = []
     
     func add(newVocab: Vocab) {
         vocabList.insert(newVocab, at: 0)

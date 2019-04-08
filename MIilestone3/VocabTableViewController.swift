@@ -9,8 +9,8 @@
 import UIKit
 
 class VocabTableViewController: UITableViewController {
-    var vocab = Vocab(word: "brochure", definition: "n. used for offline marketing")
-
+    var vocabList: VocabList?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,8 +22,6 @@ class VocabTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VocabCell", for: indexPath)
-        cell.textLabel?.text = vocab.word
-        cell.detailTextLabel?.text = vocab.definition
         return cell
     }
 

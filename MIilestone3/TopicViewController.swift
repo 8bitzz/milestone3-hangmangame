@@ -9,27 +9,28 @@
 import UIKit
 
 class TopicViewController: UITableViewController {
-    var topic = Topic(name: "TOPIC 1: MEDIA")
+    var topics = TopicList()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "TOPIC"
+        title = "TOPICs"
         
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return topics.topicList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TopicCell", for: indexPath)
-        cell.textLabel?.text = topic.name
+        cell.textLabel?.text = topics.topicList[indexPath.row].name
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "VocabTableViewController") as! VocabTableViewController
+        vc.vocabList = topics.topicList[indexPath.row].collectedWords
         navigationController?.pushViewController(vc, animated: true)
     }
 
