@@ -15,6 +15,8 @@
 		8CFA6E93225B580A005066A3 /* VocabTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA6E92225B580A005066A3 /* VocabTableViewController.swift */; };
 		8CFA6E95225B5931005066A3 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA6E94225B5931005066A3 /* Topic.swift */; };
 		8CFA6E97225B59D8005066A3 /* Vocab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA6E96225B59D8005066A3 /* Vocab.swift */; };
+		8CFA6E99225B60FE005066A3 /* TopicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA6E98225B60FE005066A3 /* TopicList.swift */; };
+		8CFA6E9B225B6230005066A3 /* VocabList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA6E9A225B6230005066A3 /* VocabList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		8CFA6E92225B580A005066A3 /* VocabTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabTableViewController.swift; sourceTree = "<group>"; };
 		8CFA6E94225B5931005066A3 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		8CFA6E96225B59D8005066A3 /* Vocab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocab.swift; sourceTree = "<group>"; };
+		8CFA6E98225B60FE005066A3 /* TopicList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicList.swift; sourceTree = "<group>"; };
+		8CFA6E9A225B6230005066A3 /* VocabList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				8CFA6E8C225B5302005066A3 /* Info.plist */,
 				8CFA6E94225B5931005066A3 /* Topic.swift */,
 				8CFA6E96225B59D8005066A3 /* Vocab.swift */,
+				8CFA6E98225B60FE005066A3 /* TopicList.swift */,
+				8CFA6E9A225B6230005066A3 /* VocabList.swift */,
 			);
 			path = MIilestone3;
 			sourceTree = "<group>";
@@ -149,6 +155,8 @@
 				8CFA6E95225B5931005066A3 /* Topic.swift in Sources */,
 				8CFA6E93225B580A005066A3 /* VocabTableViewController.swift in Sources */,
 				8CFA6E81225B5301005066A3 /* AppDelegate.swift in Sources */,
+				8CFA6E9B225B6230005066A3 /* VocabList.swift in Sources */,
+				8CFA6E99225B60FE005066A3 /* TopicList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
