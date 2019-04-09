@@ -17,7 +17,12 @@ class VocabTableViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         
+        let reviseButton = UIBarButtonItem(title: "Revise", style: .plain, target: self, action: #selector(reviseButtonTapped))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let dictionaryButton = UIBarButtonItem(title: "Dictionary", style: .plain, target: self, action: #selector(dictionaryButtonTapped))
         
+        toolbarItems = [reviseButton, spaceButton, dictionaryButton]
+        navigationController?.isToolbarHidden = false
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,5 +55,12 @@ class VocabTableViewController: UITableViewController {
         ac.addAction(addAction)
         present(ac, animated: true)
     }
-
+    
+    @objc func reviseButtonTapped() {
+        
+    }
+    
+    @objc func dictionaryButtonTapped() {
+        
+    }
 }
