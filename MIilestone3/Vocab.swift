@@ -10,7 +10,7 @@ import UIKit
 
 class Vocab {
     let word: String
-    let definition: String
+    let definition: String 
     
     init(word: String, definition: String) {
         self.word = word
