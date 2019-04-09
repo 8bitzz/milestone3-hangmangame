@@ -57,7 +57,8 @@ class VocabTableViewController: UITableViewController {
     }
     
     @objc func reviseButtonTapped() {
-        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "RevisionViewController") as! RevisionViewController
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func dictionaryButtonTapped() {
