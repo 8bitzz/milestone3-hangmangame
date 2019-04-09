@@ -9,7 +9,7 @@
 import UIKit
 
 class TopicList {
-    private(set) var topicList = [Topic]()
+    var topicList = [Topic]()
     
     func add(newTopic: Topic) {
         topicList.insert(newTopic, at: 0)

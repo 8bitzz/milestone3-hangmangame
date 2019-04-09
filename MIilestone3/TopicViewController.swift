@@ -14,8 +14,7 @@ class TopicViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "TOPICs"
-        
+        title = "TOPICS"
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
