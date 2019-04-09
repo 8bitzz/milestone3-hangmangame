@@ -61,7 +61,7 @@ class VocabTableViewController: UITableViewController {
     }
     
     @objc func dictionaryButtonTapped() {
-        let controller = DictionaryViewController()
-        navigationController?.pushViewController(controller, animated: true)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "DictionaryViewController") as! DictionaryViewController
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
