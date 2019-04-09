@@ -9,17 +9,17 @@
 import UIKit
 
 class TopicList {
-    var topicList = [Topic]()
+    var list = [Topic]()
     
     func add(newTopic: Topic) {
-        topicList.insert(newTopic, at: 0)
+        list.insert(newTopic, at: 0)
     }
     
     func removeTopic(at indexPath: IndexPath) {
-        topicList.remove(at: indexPath.row)
+        list.remove(at: indexPath.row)
     }
     
     func removeAll() {
-        topicList.removeAll()
+        list.removeAll()
     }
 }
