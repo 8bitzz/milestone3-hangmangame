@@ -19,18 +19,18 @@ class TopicViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return topics.topicList.count
+        return topics.list.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TopicCell", for: indexPath)
-        cell.textLabel?.text = topics.topicList[indexPath.row].name
+        cell.textLabel?.text = topics.list[indexPath.row].name
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "VocabTableViewController") as! VocabTableViewController
-        vc.vocabList = topics.topicList[indexPath.row].collectedWords
+        vc.collectedWords = topics.list[indexPath.row].collectedWords
         navigationController?.pushViewController(vc, animated: true)
     }
     

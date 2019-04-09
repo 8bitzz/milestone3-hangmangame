@@ -9,17 +9,17 @@
 import UIKit
 
 class VocabList {
-    var vocabList: [Vocab] = []
+    var list: [Vocab] = []
     
     func add(newVocab: Vocab) {
-        vocabList.insert(newVocab, at: 0)
+        list.insert(newVocab, at: 0)
     }
     
     func removeVocab(at indexPath: IndexPath) {
-        vocabList.remove(at: indexPath.row)
+        list.remove(at: indexPath.row)
     }
     
     func removeAll() {
-        vocabList.removeAll()
+        list.removeAll()
     }
 }
