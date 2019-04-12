@@ -57,12 +57,14 @@ class VocabTableViewController: UITableViewController {
     }
     
     @objc func reviseButtonTapped() {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "RevisionViewController") as! RevisionViewController
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "RevisionViewController") as? RevisionViewController else { return }
+        guard let words = collectedWords?.list else { return }
+        vc.revisedWords = words
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func dictionaryButtonTapped() {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "DictionaryViewController") as! DictionaryViewController
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "DictionaryViewController") as? DictionaryViewController else { return }
         navigationController?.pushViewController(vc, animated: true)
     }
 }
