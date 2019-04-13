@@ -58,7 +58,13 @@ class VocabTableViewController: UITableViewController {
     
     @objc func reviseButtonTapped() {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "RevisionViewController") as? RevisionViewController else { return }
-        guard let words = collectedWords?.list else { return }
+        guard let words = collectedWords?.list,
+                    words.count > 0 else {
+                        let ac = UIAlertController(title: "Oops !", message: "No words found \nPlease add some new vocabulary.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(ac, animated: true)
+            return
+        }
         vc.challangeWords = words
         navigationController?.pushViewController(vc, animated: true)
     }

@@ -13,8 +13,9 @@ class RevisionViewController: UIViewController {
     @IBOutlet weak var hintLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var reviseLabel: UILabel!
+    @IBOutlet weak var answerLabel: UILabel!
     
-    var challangeWords: [Vocab]?
+    var challangeWords: [Vocab] = []
     var letterButtons: [UIButton] = []
     var answer: String = "swift"
     var score = 0
@@ -87,13 +88,15 @@ class RevisionViewController: UIViewController {
     }
     
     func startGame() {
-        guard let challangeWords = challangeWords else { return }
-        guard let question = challangeWords.randomElement() else { return }
-        let questionHint = question.definition
-        hintLabel.text = questionHint
-        
+
         scoreLabel.text = "Score: \(score)"
         reviseLabel.text = "Words: \(challangeWords.count)"
+        
+        guard let challangeWord = challangeWords.randomElement() else { return }
+        hintLabel.text = challangeWord.definition
+        
+        answer = challangeWord.word
+        answerLabel.text = Array(repeating: "_ ", count: answer.count).joined()
     }
     
 
