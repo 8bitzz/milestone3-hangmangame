@@ -59,7 +59,7 @@ class VocabTableViewController: UITableViewController {
     @objc func reviseButtonTapped() {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "RevisionViewController") as? RevisionViewController else { return }
         guard let words = collectedWords?.list else { return }
-        vc.revisedWords = words
+        vc.challangeWords = words
         navigationController?.pushViewController(vc, animated: true)
     }
     

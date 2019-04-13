@@ -9,13 +9,14 @@
 import UIKit
 
 class RevisionViewController: UIViewController {
-    var revisedWords: [Vocab]?
-    var letterButtons: [UIButton] = []
-    var answer: String = "swift"
-    
+
     @IBOutlet weak var hintLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var reviseLabel: UILabel!
     
+    var challangeWords: [Vocab]?
+    var letterButtons: [UIButton] = []
+    var answer: String = "swift"
     var score = 0
     
     override func viewDidLoad() {
@@ -86,12 +87,13 @@ class RevisionViewController: UIViewController {
     }
     
     func startGame() {
-        guard let revisedWords = revisedWords else { return }
-        guard let question = revisedWords.randomElement() else { return }
+        guard let challangeWords = challangeWords else { return }
+        guard let question = challangeWords.randomElement() else { return }
         let questionHint = question.definition
         hintLabel.text = questionHint
         
         scoreLabel.text = "Score: \(score)"
+        reviseLabel.text = "Words: \(challangeWords.count)"
     }
     
 
