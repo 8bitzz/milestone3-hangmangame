@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8C58F059225CAC79000E4BFB /* DictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58F058225CAC79000E4BFB /* DictionaryViewController.swift */; };
+		8C80B6B2225CEDEA0045FECB /* RevisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C80B6B1225CEDEA0045FECB /* RevisionViewController.swift */; };
 		8CFA6E81225B5301005066A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA6E80225B5301005066A3 /* AppDelegate.swift */; };
 		8CFA6E83225B5301005066A3 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA6E82225B5301005066A3 /* TopicViewController.swift */; };
 		8CFA6E86225B5301005066A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA6E84225B5301005066A3 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		8C58F058225CAC79000E4BFB /* DictionaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryViewController.swift; sourceTree = "<group>"; };
+		8C80B6B1225CEDEA0045FECB /* RevisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisionViewController.swift; sourceTree = "<group>"; };
 		8CFA6E7D225B5301005066A3 /* MIilestone3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIilestone3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CFA6E80225B5301005066A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CFA6E82225B5301005066A3 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				8CFA6E82225B5301005066A3 /* TopicViewController.swift */,
 				8CFA6E92225B580A005066A3 /* VocabTableViewController.swift */,
 				8C58F058225CAC79000E4BFB /* DictionaryViewController.swift */,
+				8C80B6B1225CEDEA0045FECB /* RevisionViewController.swift */,
 				8CFA6E84225B5301005066A3 /* Main.storyboard */,
 				8CFA6E87225B5302005066A3 /* Assets.xcassets */,
 				8CFA6E89225B5302005066A3 /* LaunchScreen.storyboard */,
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CFA6E83225B5301005066A3 /* TopicViewController.swift in Sources */,
+				8C80B6B2225CEDEA0045FECB /* RevisionViewController.swift in Sources */,
 				8CFA6E97225B59D8005066A3 /* Vocab.swift in Sources */,
 				8CFA6E95225B5931005066A3 /* Topic.swift in Sources */,
 				8CFA6E93225B580A005066A3 /* VocabTableViewController.swift in Sources */,
