@@ -11,6 +11,12 @@ import UIKit
 class RevisionViewController: UIViewController {
     var revisedWords: [Vocab]?
     var letterButtons: [UIButton] = []
+    var answer: String = "swift"
+    
+    @IBOutlet weak var hintLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    
+    var score = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +73,8 @@ class RevisionViewController: UIViewController {
         for (index, name) in alphabet.enumerated() {
             letterButtons[index].setTitle(name, for: .normal)
         }
+        
+        startGame()
     }
     
     func configure(button: UIButton) {
@@ -77,6 +85,14 @@ class RevisionViewController: UIViewController {
         button.layer.borderColor = UIColor.white.cgColor
     }
     
+    func startGame() {
+        guard let revisedWords = revisedWords else { return }
+        guard let question = revisedWords.randomElement() else { return }
+        let questionHint = question.definition
+        hintLabel.text = questionHint
+        
+        scoreLabel.text = "Score: \(score)"
+    }
     
 
 }

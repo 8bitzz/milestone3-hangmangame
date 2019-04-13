@@ -32,13 +32,38 @@
                     <view key="view" contentMode="scaleToFill" id="sdj-ns-aCB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0e-zq-cCi">
+                                <rect key="frame" x="172" y="120" width="31.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nxj-sN-QOs">
+                                <rect key="frame" x="320" y="32" width="45" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Nxj-sN-QOs" firstAttribute="leading" secondItem="cKT-1j-Rqa" secondAttribute="leading" constant="320" id="1d6-CC-gUY"/>
+                            <constraint firstItem="t0e-zq-cCi" firstAttribute="top" secondItem="cKT-1j-Rqa" secondAttribute="top" constant="100" id="4CV-Hh-pRM"/>
+                            <constraint firstItem="t0e-zq-cCi" firstAttribute="centerX" secondItem="sdj-ns-aCB" secondAttribute="centerX" id="TjU-QV-jDG"/>
+                            <constraint firstItem="cKT-1j-Rqa" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Nxj-sN-QOs" secondAttribute="trailing" id="mIb-lQ-Uwi"/>
+                            <constraint firstItem="Nxj-sN-QOs" firstAttribute="top" secondItem="cKT-1j-Rqa" secondAttribute="top" constant="12" id="xl6-tx-cV0"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="cKT-1j-Rqa"/>
                     </view>
+                    <connections>
+                        <outlet property="hintLabel" destination="t0e-zq-cCi" id="ZSa-09-DAh"/>
+                        <outlet property="scoreLabel" destination="Nxj-sN-QOs" id="1og-pq-aLv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GMr-v7-XgA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1933" y="-538"/>
+            <point key="canvasLocation" x="1868" y="-539"/>
         </scene>
         <!--Topic View Controller-->
         <scene sceneID="9Xt-0c-okv">
