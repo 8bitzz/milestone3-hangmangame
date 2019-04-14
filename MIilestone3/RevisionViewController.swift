@@ -89,6 +89,9 @@ class RevisionViewController: UIViewController {
         loadGame()
     }
 
+    @IBAction func nextButton(_ sender: Any) {
+        loadGame()
+    }
     
     func configure(button: UIButton) {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
@@ -99,6 +102,7 @@ class RevisionViewController: UIViewController {
     }
     
     func loadGame() {
+        attempt = 0
         guard let revisedWord = challangeWords.randomElement() else { return }
         word = revisedWord.title.uppercased()
         
@@ -127,17 +131,16 @@ class RevisionViewController: UIViewController {
                 ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 present(ac, animated: true)
                 score += 1
-                scoreLabel.text = "Score: \(score)"
+                loadGame()
             }
         } else {
-            let ac = UIAlertController(title: "Oops!", message: "You've reached the final attempt", preferredStyle: .alert)
+            let ac = UIAlertController(title: "Oops!", message: "You've missed this word", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             present(ac, animated: true)
             hiddenAnswer = Array(repeating: "?", count: word.count).joined()
             answerLabel.text = hiddenAnswer
-            attempt = 0
             score += -1
-            scoreLabel.text = "Score: \(score)"
+            loadGame()
         }
     }
 }
