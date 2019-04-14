@@ -8,8 +8,9 @@
 
 import UIKit
 
-class TopicViewController: UITableViewController {
+class TopicViewController: UITableViewController, UITextFieldDelegate {
     var topics = TopicList()
+    var submitAction: UIAlertAction?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,15 +48,30 @@ class TopicViewController: UITableViewController {
         let ac = UIAlertController(title: "New topic", message: nil, preferredStyle: .alert)
         ac.addTextField { (textField) in
             textField.placeholder = "Enter a new topic here"
+            textField.delegate = self
         }
-        let addAction = UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] action in
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
             guard let topicName = ac?.textFields?[0].text else { return }
             self?.topics.add(newTopic: Topic(name: topicName))
             self?.tableView.reloadData()
         }
-        ac.addAction(addAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        ac.addAction(cancelAction)
+        ac.addAction(submitAction)
+        submitAction.isEnabled = false
+        self.submitAction = submitAction
         present(ac, animated: true)
     }
-
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        
+        if text.isEmpty {
+            submitAction?.isEnabled = false
+        } else {
+            submitAction?.isEnabled = true
+        }
+        return true
+    }
 }
 
