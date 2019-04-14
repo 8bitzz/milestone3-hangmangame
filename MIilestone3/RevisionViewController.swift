@@ -12,7 +12,6 @@ class RevisionViewController: UIViewController {
 
     @IBOutlet weak var hintLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var reviseLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
     
     var challangeWords: [Vocab] = []
@@ -44,7 +43,7 @@ class RevisionViewController: UIViewController {
         view2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         view2.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24).isActive = true
         view2.backgroundColor = .white
-    
+        
         for row1 in 0..<3 {
             for col1 in 0..<7 {
                 let button = UIButton(type: .system)
@@ -72,7 +71,7 @@ class RevisionViewController: UIViewController {
                 view2.addSubview(button)
                 letterButtons.append(button)
                 button.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
-
+                
             }
         }
         
@@ -81,9 +80,15 @@ class RevisionViewController: UIViewController {
             letterButtons[index].setTitle(name, for: .normal)
         }
         
-        startGame()
+        loadGame()
         
     }
+    
+    @IBAction func restartButton(_ sender: Any) {
+        score = 0
+        loadGame()
+    }
+
     
     func configure(button: UIButton) {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
@@ -93,7 +98,7 @@ class RevisionViewController: UIViewController {
         button.layer.borderColor = UIColor.white.cgColor
     }
     
-    func startGame() {
+    func loadGame() {
         guard let revisedWord = challangeWords.randomElement() else { return }
         word = revisedWord.title.uppercased()
         
@@ -102,7 +107,7 @@ class RevisionViewController: UIViewController {
         answerLabel.textColor = UIColor.red
         hintLabel.text = revisedWord.definition
         scoreLabel.text = "Score: \(score)"
-        reviseLabel.text = "Words: \(challangeWords.count)"
+        
     }
     
     @objc func letterTapped(_ sender: UIButton) {
