@@ -33,7 +33,7 @@ class VocabTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VocabCell", for: indexPath)
         guard let vocab = collectedWords else { return UITableViewCell() }
-        cell.textLabel?.text = vocab.list[indexPath.row].word
+        cell.textLabel?.text = vocab.list[indexPath.row].title
         cell.detailTextLabel?.text = vocab.list[indexPath.row].definition
         return cell
     }
@@ -49,7 +49,7 @@ class VocabTableViewController: UITableViewController {
         let addAction = UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] action in
             guard let wordName = ac?.textFields?[0].text,
             let wordDefinition = ac?.textFields?[1].text else { return }
-            self?.collectedWords?.add(newVocab: Vocab(word: wordName, definition: wordDefinition))
+            self?.collectedWords?.add(newVocab: Vocab(title: wordName, definition: wordDefinition))
             self?.tableView.reloadData()
         }
         ac.addAction(addAction)

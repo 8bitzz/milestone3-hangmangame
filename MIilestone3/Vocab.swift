@@ -9,11 +9,11 @@
 import UIKit
 
 class Vocab {
-    let word: String
+    let title: String
     let definition: String 
     
-    init(word: String, definition: String) {
-        self.word = word
+    init(title: String, definition: String) {
+        self.title = title
         self.definition = definition
     }
 }
