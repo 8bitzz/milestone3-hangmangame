@@ -17,7 +17,7 @@ class VocabTableViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         
-        let reviseButton = UIBarButtonItem(title: "Revise", style: .plain, target: self, action: #selector(reviseButtonTapped))
+        let reviseButton = UIBarButtonItem(title: "Review", style: .plain, target: self, action: #selector(reviseButtonTapped))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let dictionaryButton = UIBarButtonItem(title: "Dictionary", style: .plain, target: self, action: #selector(dictionaryButtonTapped))
         
@@ -60,7 +60,7 @@ class VocabTableViewController: UITableViewController {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "RevisionViewController") as? RevisionViewController else { return }
         guard let words = collectedWords?.list,
                     words.count > 0 else {
-                        let ac = UIAlertController(title: "Oops !", message: "No words found \nPlease add some new vocabulary.", preferredStyle: .alert)
+                        let ac = UIAlertController(title: "Oops !", message: "No words for reviewing \nPlease add some new vocabulary.", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             present(ac, animated: true)
             return

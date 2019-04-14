@@ -40,13 +40,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-zq-Jly">
-                                <rect key="frame" x="159" y="419" width="57" height="21"/>
+                                <rect key="frame" x="159" y="379" width="57" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0e-zq-cCi">
-                                <rect key="frame" x="172" y="460" width="31.5" height="20.5"/>
+                                <rect key="frame" x="172" y="420" width="31.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -58,17 +58,26 @@
                                     <action selector="restartButton:" destination="zKF-U2-S3e" eventType="touchUpInside" id="RSG-Mg-6RE"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHV-rD-sad">
+                                <rect key="frame" x="171.5" y="448.5" width="32" height="30"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextButton:" destination="zKF-U2-S3e" eventType="touchUpInside" id="Ytv-Xs-E8f"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Nxj-sN-QOs" firstAttribute="leading" secondItem="cKT-1j-Rqa" secondAttribute="leading" constant="320" id="1d6-CC-gUY"/>
                             <constraint firstItem="GJd-zq-Jly" firstAttribute="centerX" secondItem="t0e-zq-cCi" secondAttribute="centerX" id="2BW-gt-AOc"/>
-                            <constraint firstItem="t0e-zq-cCi" firstAttribute="top" secondItem="cKT-1j-Rqa" secondAttribute="top" constant="440" id="4CV-Hh-pRM"/>
+                            <constraint firstItem="t0e-zq-cCi" firstAttribute="top" secondItem="cKT-1j-Rqa" secondAttribute="top" constant="400" id="4CV-Hh-pRM"/>
                             <constraint firstItem="Nxj-sN-QOs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gfy-H6-45E" secondAttribute="trailing" constant="8" symbolic="YES" id="50X-Sb-RPb"/>
+                            <constraint firstItem="zHV-rD-sad" firstAttribute="centerX" secondItem="sdj-ns-aCB" secondAttribute="centerX" id="FIB-z2-9CP"/>
                             <constraint firstItem="Gfy-H6-45E" firstAttribute="top" secondItem="cKT-1j-Rqa" secondAttribute="top" constant="8" id="I2T-40-wFi"/>
                             <constraint firstItem="Gfy-H6-45E" firstAttribute="leading" secondItem="cKT-1j-Rqa" secondAttribute="leading" constant="14" id="SuQ-mJ-pkn"/>
                             <constraint firstItem="t0e-zq-cCi" firstAttribute="centerX" secondItem="sdj-ns-aCB" secondAttribute="centerX" id="TjU-QV-jDG"/>
                             <constraint firstItem="t0e-zq-cCi" firstAttribute="top" secondItem="GJd-zq-Jly" secondAttribute="bottom" constant="20" id="XTe-6N-aj3"/>
+                            <constraint firstItem="zHV-rD-sad" firstAttribute="top" secondItem="t0e-zq-cCi" secondAttribute="bottom" constant="8" id="gRA-Go-CZf"/>
                             <constraint firstItem="cKT-1j-Rqa" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Nxj-sN-QOs" secondAttribute="trailing" id="mIb-lQ-Uwi"/>
                             <constraint firstItem="Nxj-sN-QOs" firstAttribute="top" secondItem="cKT-1j-Rqa" secondAttribute="top" constant="14" id="xl6-tx-cV0"/>
                         </constraints>
