@@ -38,6 +38,16 @@ class VocabTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let collectedWords = collectedWords else { return }
+        collectedWords.removeVocab(at: indexPath)
+        tableView.reloadData()
+    }
+    
     @objc func addButtonTapped() {
         let ac = UIAlertController(title: "New vocabulary", message: nil, preferredStyle: .alert)
         ac.addTextField { (wordName) in
