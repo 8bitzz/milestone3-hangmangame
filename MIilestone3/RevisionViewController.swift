@@ -17,8 +17,9 @@ class RevisionViewController: UIViewController {
     
     var challangeWords: [Vocab] = []
     var letterButtons: [UIButton] = []
-    var answer: String = "swift"
     var score = 0
+    var answer = "swift"
+    var currentAnswer: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,7 @@ class RevisionViewController: UIViewController {
                 button.frame = frame
                 view1.addSubview(button)
                 letterButtons.append(button)
+                button.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
             }
         }
         
@@ -68,6 +70,8 @@ class RevisionViewController: UIViewController {
                 button.frame = frame
                 view2.addSubview(button)
                 letterButtons.append(button)
+                button.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
+
             }
         }
         
@@ -77,6 +81,7 @@ class RevisionViewController: UIViewController {
         }
         
         startGame()
+        
     }
     
     func configure(button: UIButton) {
@@ -88,16 +93,28 @@ class RevisionViewController: UIViewController {
     }
     
     func startGame() {
-
         scoreLabel.text = "Score: \(score)"
         reviseLabel.text = "Words: \(challangeWords.count)"
         
-        guard let challangeWord = challangeWords.randomElement() else { return }
-        hintLabel.text = challangeWord.definition
+        guard let revisedWord = challangeWords.randomElement() else { return }
+        answer = revisedWord.word.uppercased()
+        currentAnswer = Array(repeating: "_", count: answer.count).joined()
         
-        answer = challangeWord.word
-        answerLabel.text = Array(repeating: "_ ", count: answer.count).joined()
+        answerLabel.text = currentAnswer
+        answerLabel.textColor = UIColor.red
+        hintLabel.text = revisedWord.definition
     }
     
+    @objc func letterTapped(_ sender: UIButton) {
+        guard let buttonTitle = sender.titleLabel?.text else { return }
+        var characterSets = Array(currentAnswer)
+        guard answer.contains(buttonTitle) else { return }
+        for (i, character) in answer.enumerated() {
+            guard String(character) == buttonTitle else { continue }
+            characterSets[i] = character
+        }
+        currentAnswer = String(characterSets)
+        answerLabel.text = currentAnswer
+    }
 
 }
