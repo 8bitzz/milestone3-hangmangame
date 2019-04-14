@@ -33,7 +33,7 @@ class VocabTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VocabCell", for: indexPath)
         guard let vocab = collectedWords else { return UITableViewCell() }
-        cell.textLabel?.text = vocab.list[indexPath.row].word
+        cell.textLabel?.text = vocab.list[indexPath.row].title
         cell.detailTextLabel?.text = vocab.list[indexPath.row].definition
         return cell
     }
@@ -49,7 +49,7 @@ class VocabTableViewController: UITableViewController {
         let addAction = UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] action in
             guard let wordName = ac?.textFields?[0].text,
             let wordDefinition = ac?.textFields?[1].text else { return }
-            self?.collectedWords?.add(newVocab: Vocab(word: wordName, definition: wordDefinition))
+            self?.collectedWords?.add(newVocab: Vocab(title: wordName, definition: wordDefinition))
             self?.tableView.reloadData()
         }
         ac.addAction(addAction)
@@ -58,8 +58,14 @@ class VocabTableViewController: UITableViewController {
     
     @objc func reviseButtonTapped() {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "RevisionViewController") as? RevisionViewController else { return }
-        guard let words = collectedWords?.list else { return }
-        vc.revisedWords = words
+        guard let words = collectedWords?.list,
+                    words.count > 0 else {
+                        let ac = UIAlertController(title: "Oops !", message: "No words found \nPlease add some new vocabulary.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(ac, animated: true)
+            return
+        }
+        vc.challangeWords = words
         navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -9,8 +9,18 @@
 import UIKit
 
 class RevisionViewController: UIViewController {
-    var revisedWords: [Vocab]?
+
+    @IBOutlet weak var hintLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var reviseLabel: UILabel!
+    @IBOutlet weak var answerLabel: UILabel!
+    
+    var challangeWords: [Vocab] = []
     var letterButtons: [UIButton] = []
+    var score = 0
+    var attempt = 0
+    var word = ""
+    var hiddenAnswer: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +56,7 @@ class RevisionViewController: UIViewController {
                 button.frame = frame
                 view1.addSubview(button)
                 letterButtons.append(button)
+                button.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
             }
         }
         
@@ -60,6 +71,8 @@ class RevisionViewController: UIViewController {
                 button.frame = frame
                 view2.addSubview(button)
                 letterButtons.append(button)
+                button.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
+
             }
         }
         
@@ -67,6 +80,9 @@ class RevisionViewController: UIViewController {
         for (index, name) in alphabet.enumerated() {
             letterButtons[index].setTitle(name, for: .normal)
         }
+        
+        startGame()
+        
     }
     
     func configure(button: UIButton) {
@@ -77,6 +93,46 @@ class RevisionViewController: UIViewController {
         button.layer.borderColor = UIColor.white.cgColor
     }
     
+    func startGame() {
+        guard let revisedWord = challangeWords.randomElement() else { return }
+        word = revisedWord.title.uppercased()
+        
+        hiddenAnswer = Array(repeating: "?", count: word.count).joined()
+        answerLabel.text = hiddenAnswer
+        answerLabel.textColor = UIColor.red
+        hintLabel.text = revisedWord.definition
+        scoreLabel.text = "Score: \(score)"
+        reviseLabel.text = "Words: \(challangeWords.count)"
+    }
     
-
+    @objc func letterTapped(_ sender: UIButton) {
+        attempt += 1
+        if attempt <= 7 {
+            guard let buttonTitle = sender.titleLabel?.text else { return }
+            var characterSets = Array(hiddenAnswer)
+            guard word.contains(buttonTitle) else { return }
+            for (i, character) in word.enumerated() {
+                guard String(character) == buttonTitle else { continue }
+                characterSets[i] = character
+            }
+            hiddenAnswer = String(characterSets)
+            answerLabel.text = hiddenAnswer
+            if hiddenAnswer == word {
+                let ac = UIAlertController(title: "Excellent!", message: "You've owned this word", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                present(ac, animated: true)
+                score += 1
+                scoreLabel.text = "Score: \(score)"
+            }
+        } else {
+            let ac = UIAlertController(title: "Oops!", message: "You've reached the final attempt", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(ac, animated: true)
+            hiddenAnswer = Array(repeating: "?", count: word.count).joined()
+            answerLabel.text = hiddenAnswer
+            attempt = 0
+            score += -1
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
 }
