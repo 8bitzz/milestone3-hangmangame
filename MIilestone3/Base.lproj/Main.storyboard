@@ -94,6 +94,7 @@
                     </view>
                     <connections>
                         <outlet property="answerLabel" destination="GJd-zq-Jly" id="0Em-gp-OBk"/>
+                        <outlet property="hangmanImage" destination="G7a-Jb-Uvu" id="zmP-VP-Lyg"/>
                         <outlet property="hintLabel" destination="t0e-zq-cCi" id="ZSa-09-DAh"/>
                         <outlet property="scoreLabel" destination="Nxj-sN-QOs" id="1og-pq-aLv"/>
                     </connections>

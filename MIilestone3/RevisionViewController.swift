@@ -13,6 +13,7 @@ class RevisionViewController: UIViewController {
     @IBOutlet weak var hintLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
+    @IBOutlet weak var hangmanImage: UIImageView!
     
     var challangeWords: [Vocab] = []
     var letterButtons: [UIButton] = []
@@ -102,7 +103,6 @@ class RevisionViewController: UIViewController {
     }
     
     func loadGame() {
-        attempt = 0
         guard let revisedWord = challangeWords.randomElement() else { return }
         word = revisedWord.title.uppercased()
         
@@ -111,21 +111,21 @@ class RevisionViewController: UIViewController {
         answerLabel.textColor = UIColor.red
         hintLabel.text = revisedWord.definition
         scoreLabel.text = "Score: \(score)"
-        
+        attempt = 0
+        hangmanImage.image = UIImage(named: "\(attempt)")
     }
     
     @objc func letterTapped(_ sender: UIButton) {
-        attempt += 1
-        if attempt <= 7 {
-            guard let buttonTitle = sender.titleLabel?.text else { return }
-            var characterSets = Array(hiddenAnswer)
-            guard word.contains(buttonTitle) else { return }
+        guard let buttonTitle = sender.titleLabel?.text else { return }
+        var characterSets = Array(hiddenAnswer)
+        if word.contains(buttonTitle) {
             for (i, character) in word.enumerated() {
                 guard String(character) == buttonTitle else { continue }
                 characterSets[i] = character
             }
             hiddenAnswer = String(characterSets)
             answerLabel.text = hiddenAnswer
+            
             if hiddenAnswer == word {
                 let ac = UIAlertController(title: "Excellent!", message: "You've owned this word", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -133,14 +133,21 @@ class RevisionViewController: UIViewController {
                 score += 1
                 loadGame()
             }
+            
         } else {
-            let ac = UIAlertController(title: "Oops!", message: "You've missed this word", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            present(ac, animated: true)
-            hiddenAnswer = Array(repeating: "?", count: word.count).joined()
-            answerLabel.text = hiddenAnswer
-            score += -1
-            loadGame()
+            attempt += 1
+            if attempt <= 6 {
+                for _ in 0..<attempt {
+                    hangmanImage.image = UIImage(named: "\(attempt)")
+                }
+            } else {
+                let ac = UIAlertController(title: "Oops!", message: "You've missed this word", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                present(ac, animated: true)
+                score += -1
+                scoreLabel.text = "Score: \(score)"
+                hangmanImage.image = UIImage(named: "7")
+            }
         }
     }
 }
