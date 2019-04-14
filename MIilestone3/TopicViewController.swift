@@ -34,6 +34,15 @@ class TopicViewController: UITableViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        topics.removeTopic(at: indexPath)
+        tableView.reloadData()
+    }
+    
     @objc func addButtonTapped() {
         let ac = UIAlertController(title: "New topic", message: nil, preferredStyle: .alert)
         ac.addTextField { (textField) in
