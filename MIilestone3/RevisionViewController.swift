@@ -21,6 +21,7 @@ class RevisionViewController: UIViewController {
     var attempt = 0
     var word = ""
     var hiddenAnswer: String = ""
+    var chrStringArray: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,8 +107,9 @@ class RevisionViewController: UIViewController {
         guard let revisedWord = challangeWords.randomElement() else { return }
         word = revisedWord.title.uppercased()
         
-        hiddenAnswer = Array(repeating: "?", count: word.count).joined()
+        hiddenAnswer = Array(repeating: "_", count: word.count).joined(separator: " ")
         answerLabel.text = hiddenAnswer
+        answerLabel.font = UIFont.systemFont(ofSize: 24)
         answerLabel.textColor = UIColor.red
         hintLabel.text = revisedWord.definition
         scoreLabel.text = "Score: \(score)"
@@ -117,21 +119,24 @@ class RevisionViewController: UIViewController {
     
     @objc func letterTapped(_ sender: UIButton) {
         guard let buttonTitle = sender.titleLabel?.text else { return }
-        var characterSets = Array(hiddenAnswer)
+        let trimmedAnswer = hiddenAnswer.replacingOccurrences(of: " ", with: "")
+        var characterSets = Array(trimmedAnswer)
         if word.contains(buttonTitle) {
             for (i, character) in word.enumerated() {
                 guard String(character) == buttonTitle else { continue }
                 characterSets[i] = character
             }
-            hiddenAnswer = String(characterSets)
+            chrStringArray = characterSets.map { String($0) }
+            hiddenAnswer = chrStringArray.joined(separator: " ")
             answerLabel.text = hiddenAnswer
+            answerLabel.font = UIFont.systemFont(ofSize: 24)
             
-            if hiddenAnswer == word {
+            if hiddenAnswer.replacingOccurrences(of: " ", with: "") == word {
                 let ac = UIAlertController(title: "Excellent!", message: "You've owned this word", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 present(ac, animated: true)
                 score += 1
-                loadGame()
+                scoreLabel.text = "Score: \(score)"
             }
             
         } else {
