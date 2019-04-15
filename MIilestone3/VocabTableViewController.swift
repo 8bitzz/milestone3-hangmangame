@@ -8,8 +8,9 @@
 
 import UIKit
 
-class VocabTableViewController: UITableViewController {
+class VocabTableViewController: UITableViewController, UITextFieldDelegate {
     var collectedWords: VocabList?
+    var submitAction: UIAlertAction?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,21 +39,36 @@ class VocabTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let collectedWords = collectedWords else { return }
+        collectedWords.removeVocab(at: indexPath)
+        tableView.reloadData()
+    }
+    
     @objc func addButtonTapped() {
         let ac = UIAlertController(title: "New vocabulary", message: nil, preferredStyle: .alert)
         ac.addTextField { (wordName) in
             wordName.placeholder = "Enter a new word here"
+            wordName.delegate = self
         }
         ac.addTextField { (wordDefinition) in
             wordDefinition.placeholder = "Enter short meaning here"
         }
-        let addAction = UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] action in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
             guard let wordName = ac?.textFields?[0].text,
             let wordDefinition = ac?.textFields?[1].text else { return }
             self?.collectedWords?.add(newVocab: Vocab(title: wordName, definition: wordDefinition))
             self?.tableView.reloadData()
         }
-        ac.addAction(addAction)
+        ac.addAction(submitAction)
+        ac.addAction(cancelAction)
+        submitAction.isEnabled = false
+        self.submitAction = submitAction
         present(ac, animated: true)
     }
     
@@ -72,5 +88,16 @@ class VocabTableViewController: UITableViewController {
     @objc func dictionaryButtonTapped() {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "DictionaryViewController") as? DictionaryViewController else { return }
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        
+        if !text.isEmpty {
+            submitAction?.isEnabled = true
+        } else {
+            submitAction?.isEnabled = false
+        }
+        return true
     }
 }

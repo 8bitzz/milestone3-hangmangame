@@ -59,13 +59,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHV-rD-sad">
-                                <rect key="frame" x="171.5" y="448.5" width="32" height="30"/>
+                                <rect key="frame" x="171.5" y="460.5" width="32" height="30"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
                                     <action selector="nextButton:" destination="zKF-U2-S3e" eventType="touchUpInside" id="Ytv-Xs-E8f"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7a-Jb-Uvu">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7a-Jb-Uvu">
                                 <rect key="frame" x="123.5" y="120" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="MRC-Qt-0Ia"/>
@@ -85,7 +85,7 @@
                             <constraint firstItem="t0e-zq-cCi" firstAttribute="centerX" secondItem="sdj-ns-aCB" secondAttribute="centerX" id="TjU-QV-jDG"/>
                             <constraint firstItem="t0e-zq-cCi" firstAttribute="top" secondItem="GJd-zq-Jly" secondAttribute="bottom" constant="20" id="XTe-6N-aj3"/>
                             <constraint firstItem="G7a-Jb-Uvu" firstAttribute="centerX" secondItem="sdj-ns-aCB" secondAttribute="centerX" id="YJX-xg-PCF"/>
-                            <constraint firstItem="zHV-rD-sad" firstAttribute="top" secondItem="t0e-zq-cCi" secondAttribute="bottom" constant="8" id="gRA-Go-CZf"/>
+                            <constraint firstItem="zHV-rD-sad" firstAttribute="top" secondItem="t0e-zq-cCi" secondAttribute="bottom" constant="20" id="gRA-Go-CZf"/>
                             <constraint firstItem="G7a-Jb-Uvu" firstAttribute="top" secondItem="cKT-1j-Rqa" secondAttribute="top" constant="100" id="hS2-HD-feB"/>
                             <constraint firstItem="cKT-1j-Rqa" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Nxj-sN-QOs" secondAttribute="trailing" id="mIb-lQ-Uwi"/>
                             <constraint firstItem="Nxj-sN-QOs" firstAttribute="top" secondItem="cKT-1j-Rqa" secondAttribute="top" constant="14" id="xl6-tx-cV0"/>

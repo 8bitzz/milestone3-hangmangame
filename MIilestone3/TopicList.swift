@@ -18,8 +18,4 @@ class TopicList {
     func removeTopic(at indexPath: IndexPath) {
         list.remove(at: indexPath.row)
     }
-    
-    func removeAll() {
-        list.removeAll()
-    }
 }
