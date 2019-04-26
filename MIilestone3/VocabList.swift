@@ -18,4 +18,8 @@ class VocabList: Codable {
     func removeVocab(at indexPath: IndexPath) {
         list.remove(at: indexPath.row)
     }
+    
+    func removeAll() {
+        list.removeAll()
+    }
 }

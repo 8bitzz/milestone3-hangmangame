@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol VocabTableViewControllerDelegate: class {
+    
+    func saveVocabList()
+}
+
 class VocabTableViewController: UITableViewController, UITextFieldDelegate {
     var collectedWords: VocabList?
     var submitAction: UIAlertAction?
+    weak var delegate: VocabTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +30,7 @@ class VocabTableViewController: UITableViewController, UITextFieldDelegate {
         
         toolbarItems = [reviseButton, spaceButton, dictionaryButton]
         navigationController?.isToolbarHidden = false
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,6 +53,7 @@ class VocabTableViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let collectedWords = collectedWords else { return }
         collectedWords.removeVocab(at: indexPath)
+        delegate?.saveVocabList()
         tableView.reloadData()
     }
     
@@ -63,6 +71,7 @@ class VocabTableViewController: UITableViewController, UITextFieldDelegate {
             guard let wordName = ac?.textFields?[0].text,
             let wordDefinition = ac?.textFields?[1].text else { return }
             self?.collectedWords?.add(newVocab: Vocab(title: wordName, definition: wordDefinition))
+            self?.delegate?.saveVocabList()
             self?.tableView.reloadData()
         }
         ac.addAction(submitAction)

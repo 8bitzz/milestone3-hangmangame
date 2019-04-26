@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopicViewController: UITableViewController, UITextFieldDelegate {
+class TopicViewController: UITableViewController, UITextFieldDelegate, VocabTableViewControllerDelegate {
     var topics = TopicList()
     var submitAction: UIAlertAction?
 
@@ -42,6 +42,7 @@ class TopicViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "VocabTableViewController") as! VocabTableViewController
+        vc.delegate = self
         vc.collectedWords = topics.list[indexPath.row].collectedWords
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -52,6 +53,7 @@ class TopicViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         topics.removeTopic(at: indexPath)
+        topics.save()
         tableView.reloadData()
     }
     
@@ -84,6 +86,10 @@ class TopicViewController: UITableViewController, UITextFieldDelegate {
             submitAction?.isEnabled = true
         }
         return true
+    }
+    
+    func saveVocabList() {
+        topics.save()
     }
 }
 
