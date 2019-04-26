@@ -14,13 +14,13 @@ class VocabTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Vocabulary"
+        title = "Wordlist"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         
         let reviseButton = UIBarButtonItem(title: "Review", style: .plain, target: self, action: #selector(reviseButtonTapped))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let dictionaryButton = UIBarButtonItem(title: "Dictionary", style: .plain, target: self, action: #selector(dictionaryButtonTapped))
+        let dictionaryButton = UIBarButtonItem(title: "Thesaurus", style: .plain, target: self, action: #selector(dictionaryButtonTapped))
         
         toolbarItems = [reviseButton, spaceButton, dictionaryButton]
         navigationController?.isToolbarHidden = false

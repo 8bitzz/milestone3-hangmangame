@@ -14,17 +14,26 @@ class RevisionViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var hangmanImage: UIImageView!
+    @IBOutlet weak var countLabel: UILabel!
     
     var challangeWords: [Vocab] = []
     var letterButtons: [UIButton] = []
     var score = 0
-    var attempt = 0
-    var word = ""
+    var letterFailed = 0
+    var wordAttempt = 1
+    var reviewedWord = ""
     var hiddenAnswer: String = ""
     var chrStringArray: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let restartButton = UIBarButtonItem(title: "Restart", style: .plain, target: self, action: #selector(restartButtonTapped))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let nextButton = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextButtonTapped))
+        
+        toolbarItems = [restartButton, spaceButton, nextButton]
+        navigationController?.isToolbarHidden = false
         
         let view1 = UIView()
         view1.translatesAutoresizingMaskIntoConstraints = false
@@ -81,17 +90,18 @@ class RevisionViewController: UIViewController {
         for (index, name) in alphabet.enumerated() {
             letterButtons[index].setTitle(name, for: .normal)
         }
-        
         loadGame()
         
     }
     
-    @IBAction func restartButton(_ sender: Any) {
+    @objc func restartButtonTapped(_ sender: UIButton) {
         score = 0
+        wordAttempt = 1
         loadGame()
     }
 
-    @IBAction func nextButton(_ sender: Any) {
+    @objc func nextButtonTapped(_ sender: UIButton) {
+        wordAttempt += 1
         loadGame()
     }
     
@@ -104,25 +114,26 @@ class RevisionViewController: UIViewController {
     }
     
     func loadGame() {
-        guard let revisedWord = challangeWords.randomElement() else { return }
-        word = revisedWord.title.uppercased()
+        guard let challangeWord = challangeWords.randomElement() else { return }
+        reviewedWord = challangeWord.title.uppercased()
         
-        hiddenAnswer = Array(repeating: "_", count: word.count).joined(separator: " ")
+        hiddenAnswer = Array(repeating: "_", count: reviewedWord.count).joined(separator: " ")
         answerLabel.text = hiddenAnswer
         answerLabel.font = UIFont.systemFont(ofSize: 24)
         answerLabel.textColor = UIColor.red
-        hintLabel.text = revisedWord.definition
-        scoreLabel.text = "Score: \(score)"
-        attempt = 0
-        hangmanImage.image = UIImage(named: "\(attempt)")
+        hintLabel.text = challangeWord.definition
+        scoreLabel.text = "Scores: \(score)"
+        letterFailed = 0
+        countLabel.text = "Attempts: \(wordAttempt)"
+        hangmanImage.image = UIImage(named: "\(letterFailed)")
     }
     
     @objc func letterTapped(_ sender: UIButton) {
         guard let buttonTitle = sender.titleLabel?.text else { return }
         let trimmedAnswer = hiddenAnswer.replacingOccurrences(of: " ", with: "")
         var characterSets = Array(trimmedAnswer)
-        if word.contains(buttonTitle) {
-            for (i, character) in word.enumerated() {
+        if reviewedWord.contains(buttonTitle) {
+            for (i, character) in reviewedWord.enumerated() {
                 guard String(character) == buttonTitle else { continue }
                 characterSets[i] = character
             }
@@ -131,7 +142,7 @@ class RevisionViewController: UIViewController {
             answerLabel.text = hiddenAnswer
             answerLabel.font = UIFont.systemFont(ofSize: 24)
             
-            if hiddenAnswer.replacingOccurrences(of: " ", with: "") == word {
+            if hiddenAnswer.replacingOccurrences(of: " ", with: "") == reviewedWord {
                 let ac = UIAlertController(title: "Excellent!", message: "You've owned this word", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 present(ac, animated: true)
@@ -140,17 +151,20 @@ class RevisionViewController: UIViewController {
             }
             
         } else {
-            attempt += 1
-            if attempt <= 6 {
-                for _ in 0..<attempt {
-                    hangmanImage.image = UIImage(named: "\(attempt)")
+            letterFailed += 1
+            if letterFailed <= 6 {
+                for _ in 0..<letterFailed {
+                    hangmanImage.image = UIImage(named: "\(letterFailed)")
                 }
             } else {
                 let ac = UIAlertController(title: "Oops!", message: "You've missed this word", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                let failAction = UIAlertAction(title: "Ok", style: .cancel) { [weak self] action in
+                    guard let strSelf = self else { return }
+                    strSelf.score += -1
+                    strSelf.scoreLabel.text = "Score: \(strSelf.score)"
+                }
+                ac.addAction(failAction)
                 present(ac, animated: true)
-                score += -1
-                scoreLabel.text = "Score: \(score)"
                 hangmanImage.image = UIImage(named: "7")
             }
         }
