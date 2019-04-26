@@ -23,7 +23,7 @@ class DictionaryViewController: UIViewController {
         webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
-        let urlStr = "https://www.oxfordlearnersdictionaries.com/"
+        let urlStr = "https://www.wordhippo.com/"
         guard let url = URL(string: urlStr) else { return }
         webView.load(URLRequest(url: url))
     }
