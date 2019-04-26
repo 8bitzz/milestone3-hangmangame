@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopicViewController: UITableViewController, UITextFieldDelegate {
+class TopicViewController: UITableViewController, UITextFieldDelegate, VocabTableViewControllerDelegate {
     var topics = TopicList()
     var submitAction: UIAlertAction?
 
@@ -17,6 +17,17 @@ class TopicViewController: UITableViewController, UITextFieldDelegate {
         title = "Topics"
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        
+        let defaults = UserDefaults.standard
+        if let savedTopic = defaults.object(forKey: "last-topic-list") as? Data {
+            let jsonDecoder = JSONDecoder()
+
+            do {
+                topics = try jsonDecoder.decode(TopicList.self, from: savedTopic)
+            } catch {
+                print("Failed to save people")
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,6 +42,7 @@ class TopicViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "VocabTableViewController") as! VocabTableViewController
+        vc.delegate = self
         vc.collectedWords = topics.list[indexPath.row].collectedWords
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -41,6 +53,7 @@ class TopicViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         topics.removeTopic(at: indexPath)
+        topics.save()
         tableView.reloadData()
     }
     
@@ -53,6 +66,7 @@ class TopicViewController: UITableViewController, UITextFieldDelegate {
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
             guard let topicName = ac?.textFields?[0].text else { return }
             self?.topics.add(newTopic: Topic(name: topicName))
+            self?.topics.save()
             self?.tableView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -72,6 +86,10 @@ class TopicViewController: UITableViewController, UITextFieldDelegate {
             submitAction?.isEnabled = true
         }
         return true
+    }
+    
+    func saveVocabList() {
+        topics.save()
     }
 }
 

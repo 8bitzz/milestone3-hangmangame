@@ -8,7 +8,8 @@
 
 import UIKit
 
-class TopicList {
+class TopicList: Codable {
+    
     var list = [Topic]()
     
     func add(newTopic: Topic) {
@@ -17,5 +18,16 @@ class TopicList {
     
     func removeTopic(at indexPath: IndexPath) {
         list.remove(at: indexPath.row)
+    }
+    
+    func save() {
+        let jsonEncoder = JSONEncoder()
+        if let savedTopic = try? jsonEncoder.encode(self) {
+            let defaults = UserDefaults.standard
+            defaults.set(savedTopic, forKey: "last-topic-list")
+            defaults.synchronize()
+        } else {
+            print("Failed to save topic")
+        }
     }
 }
