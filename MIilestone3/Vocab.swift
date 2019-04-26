@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Vocab {
+class Vocab: Codable {
     let title: String
     let definition: String 
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Topic {
+class Topic: Codable {
     var name: String
     var collectedWords = VocabList()
     

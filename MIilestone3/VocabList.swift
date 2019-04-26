@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VocabList {
+class VocabList: Codable {
     var list: [Vocab] = []
     
     func add(newVocab: Vocab) {

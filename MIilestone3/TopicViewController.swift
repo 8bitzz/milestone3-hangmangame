@@ -17,6 +17,17 @@ class TopicViewController: UITableViewController, UITextFieldDelegate {
         title = "Topics"
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        
+        let defaults = UserDefaults.standard
+        if let savedTopic = defaults.object(forKey: "last-topic-list") as? Data {
+            let jsonDecoder = JSONDecoder()
+
+            do {
+                topics = try jsonDecoder.decode(TopicList.self, from: savedTopic)
+            } catch {
+                print("Failed to save people")
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,6 +64,7 @@ class TopicViewController: UITableViewController, UITextFieldDelegate {
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
             guard let topicName = ac?.textFields?[0].text else { return }
             self?.topics.add(newTopic: Topic(name: topicName))
+            self?.topics.save()
             self?.tableView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
