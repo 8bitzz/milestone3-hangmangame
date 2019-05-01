@@ -98,17 +98,11 @@ class RevisionViewController: UIViewController {
         score = 0
         wordAttempt = 1
         loadGame()
-        saveScore(with: score)
     }
 
     @objc func nextButtonTapped(_ sender: UIButton) {
         wordAttempt += 1
         loadGame()
-    }
-    
-    func saveScore(with newScore: Int) {
-        let defaults = UserDefaults.standard
-        defaults.set(newScore, forKey: "score")
     }
     
     func configure(button: UIButton) {
@@ -128,9 +122,6 @@ class RevisionViewController: UIViewController {
         answerLabel.font = UIFont.systemFont(ofSize: 24)
         answerLabel.textColor = UIColor.red
         hintLabel.text = challangeWord.definition
-        
-        let defaults = UserDefaults.standard
-        score = defaults.integer(forKey: "score")
         scoreLabel.text = "Scores: \(score)"
         letterFailed = 0
         countLabel.text = "Attempts: \(wordAttempt)"
@@ -157,7 +148,6 @@ class RevisionViewController: UIViewController {
                 present(ac, animated: true)
                 score += 1
                 scoreLabel.text = "Score: \(score)"
-                saveScore(with: score)
             }
             
         } else {
@@ -172,7 +162,6 @@ class RevisionViewController: UIViewController {
                     guard let strSelf = self else { return }
                     strSelf.score += -1
                     strSelf.scoreLabel.text = "Score: \(strSelf.score)"
-                    self?.saveScore(with: strSelf.score)
                 }
                 ac.addAction(failAction)
                 present(ac, animated: true)
